@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grid-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grid
+  template:
+    metadata:
+      labels:
+        app: grid
+    spec:
+      containers:
+      - name: grid
+        image: repo.matzen.io/grid:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
