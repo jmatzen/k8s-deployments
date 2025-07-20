@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shopping-list-api-deploy
+  name: shopping-list-deploy
+  namespace: shopping-list
 spec:
   replicas: 1
   selector:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
       - name: shopping-list-api
-        image: repo.matzen.io/shopping-list-api:latest
+        image: repo.matzen.io/shopping-list:1.0.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
