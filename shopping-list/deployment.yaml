@@ -17,7 +17,7 @@ spec:
       - name: shopping-list-regcred 
       containers:
       - name: shopping-list-api
-        image: repo.matzen.io/shopping-list:1.0.0
+        image: repo.matzen.io/shopping-list-app:1.0.0
         imagePullPolicy: IfNotPresent
       ports:
       - containerPort: 8080
