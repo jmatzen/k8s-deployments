@@ -4,9 +4,9 @@ metadata:
   name: grid-service
   namespace: grid
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: grid
   ports:
-    - port: 9000
+    - port: 3000
       targetPort: 3000
