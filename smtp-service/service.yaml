@@ -9,7 +9,7 @@ spec:
   ports:
     - port: 25
       targetPort: 25
-      nodePort: 30083
+      nodePort: 30084
     - port: 18080
       targetPort: 18080
-      nodePort: 30084
+      nodePort: 30085
