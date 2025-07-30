@@ -20,6 +20,8 @@ spec:
         image: repo.matzen.io/smtp-server:latest
         imagePullPolicy: Always
         env:
+        - name: RUST_LOG
+          value: debug
         - name: AWS_ACCESS_KEY_ID
           value: AKIA3BQBOHFXLZJCWIJF
         - name: S3_BUCKET
