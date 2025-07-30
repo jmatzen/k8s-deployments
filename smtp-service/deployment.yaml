@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smtp-service-deploy
+  namespace: smtp-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: smtp-server
+  template:
+    metadata:
+      labels:
+        app: smtp-server
+    spec:
+      imagePullSecrets: 
+      - name: regcred
+      containers:
+      - name: smtp-service
+        image: repo.matzen.io/smtp-server:latest
+        imagePullPolicy: Always
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          value: AKIA3BQBOHFXLZJCWIJF
+        - name: S3_BUCKET
+          value: email-e0ed232a-0a79-41d5-bb36-7ed5d8e65247
+        - name: MONGODB_SERVER
+          value: mongo.default.svc.cluster.local:27017
+        - name: MONGODB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: MONGODB_PASS
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret-access-key
+              key: AWS_SECRET_ACCESS_KEY
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+        ports:
+        - containerPort: 25
+          name: smtp
+          protocol: TCP
+        - containerPort: 18080
+          name: http
+          protocol: TCP
