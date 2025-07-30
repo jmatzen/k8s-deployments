@@ -20,6 +20,8 @@ spec:
         image: repo.matzen.io/smtp-server:latest
         imagePullPolicy: Always
         env:
+        - name: AWS_REGION
+          value: us-west-2
         - name: RUST_LOG
           value: debug
         - name: AWS_ACCESS_KEY_ID
