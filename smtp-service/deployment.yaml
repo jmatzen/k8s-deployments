@@ -23,7 +23,7 @@ spec:
         - name: AWS_REGION
           value: us-west-2
         - name: RUST_LOG
-          value: info
+          value: debug
         - name: AWS_ACCESS_KEY_ID
           value: AKIA3BQBOHFXLZJCWIJF
         - name: S3_BUCKET
