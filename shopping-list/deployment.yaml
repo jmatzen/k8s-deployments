@@ -17,8 +17,8 @@ spec:
       - name: shopping-list-regcred 
       containers:
       - name: shopping-list-api
-        image: repo.matzen.io/shopping-list-app:1.0.5
-        imagePullPolicy: IfNotPresent
+        image: repo.matzen.io/shopping-list-app:latest
+        imagePullPolicy: Always
         env:
         - name: OPENAI_API_KEY
           valueFrom:
