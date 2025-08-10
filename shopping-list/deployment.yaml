@@ -4,7 +4,7 @@ metadata:
   name: shopping-list-deploy
   namespace: shopping-list
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: shopping-list-api
