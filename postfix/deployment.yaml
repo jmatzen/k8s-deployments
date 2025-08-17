@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postfix-server
+  namespace: mail
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postfix-server
+  template:
+    metadata:
+      labels:
+        app: postfix-server
+    spec:
+      imagePullSecrets: 
+      - name: regcred
+      containers:
+      - name: postfix-server
+        image: repo.matzen.io/postfix-server:latest
+        imagePullPolicy: Always
+        # env:
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+        ports:
+        - containerPort: 25
+          name: smtp
+          protocol: TCP
+        volumeMounts:
+        - name: postfix-pvc
+          mountPath: /var/spool/postfix
+      volumes:
+      - name: postfix-pvc
+        persistentVolumeClaim:
+          claimName: postfix-pvc
