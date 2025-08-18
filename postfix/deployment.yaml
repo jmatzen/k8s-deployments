@@ -27,8 +27,8 @@ spec:
         - name: SMTP_PASSWORD
           valueFrom:  
             secretKeyRef:
-              name: ses-secret
-              key: AKIA3BQBOHFXOOBB5P5X
+              name: email-ses-secret
+              key: ses-secret
         resources:
           requests:
             cpu: "100m"
