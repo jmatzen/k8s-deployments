@@ -11,7 +11,7 @@ spec:
       port: 25
       targetPort: 25
       nodePort: 30086
-    - name: imap
-      port: 143
-      targetPort: 143
-      nodePort: 30143
+    - name: imap-tls
+      port: 993
+      targetPort: 993
+      nodePort: 30993
