@@ -19,7 +19,7 @@ spec:
       - name: postfix-server
         image: repo.matzen.io/postfix-server:latest
         imagePullPolicy: Always
-        env:
+      - env:
         - name: SMTP_USERNAME
           value: AKIA3BQBOHFXOOBB5P5X
         - name: SMTP_RELAY_HOST
