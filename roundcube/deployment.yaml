@@ -23,7 +23,7 @@ spec:
         - name: ROUNDCUBEMAIL_DEFAULT_HOST
           value: ssl://shadow
         - name: ROUNDCUBEMAIL_DEFAULT_PORT
-          value: 993
+          value: "993"
         - name: ROUNDCUBEMAIL_DB_TYPE
           value: sqlite
         resources:
