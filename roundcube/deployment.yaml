@@ -26,6 +26,10 @@ spec:
           value: "993"
         - name: ROUNDCUBEMAIL_DB_TYPE
           value: sqlite
+        - name: ROUNDCUBEMAIL_SMTP_SERVER
+          value: tls://www.funotron.com
+        - name: ROUNDCUBEMAIL_SMTP_PORT
+          value: "25"
         resources:
           requests:
             cpu: "100m"
