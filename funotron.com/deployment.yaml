@@ -14,7 +14,7 @@ spec:
         app: funotron-web
     spec:
       imagePullSecrets: 
-      - name: shopping-list-regcred 
+      - name: funotron-regcred 
       containers:
       - name: funotron-web
         image: repo.matzen.io/funotron.com:latest
