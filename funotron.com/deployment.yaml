@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: funotron-web-deploy
+  namespace: funotron
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: funotron-web
+  template:
+    metadata:
+      labels:
+        app: funotron-web
+    spec:
+      imagePullSecrets: 
+      - name: shopping-list-regcred 
+      containers:
+      - name: funotron-web
+        image: repo.matzen.io/funotron.com:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "128Mi"
+        ports:
+        - containerPort: 3000
