@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-provider
+  namespace: mail
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-provider
+  template:
+    metadata:
+      labels:
+        app: auth-provider
+    spec:
+      imagePullSecrets: 
+      - name: regcred
+      containers:
+      - name: auth-provider
+        image: repo.matzen.io/auth-provider:latest
+        imagePullPolicy: Always
+        env:
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - name: auth-provider-pvc
+          mountPath: /app/data
+      volumes:
+      - name: auth-provider-pvc
+        persistentVolumeClaim:
+          claimName: auth-provider-pvc
