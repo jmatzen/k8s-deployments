@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jamchat
+  namespace: jamchat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jamchat
+  template:
+    metadata:
+      labels:
+        app: jamchat
+    spec:
+      imagePullSecrets: 
+      - name: regcred
+      containers:
+      - name: jamchat
+        image: repo.matzen.io/jamchat:latest
+        imagePullPolicy: Always
+        env:
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - name: jamchat-pvc
+          mountPath: /app/data
+      volumes:
+      - name: jamchat-pvc
+        persistentVolumeClaim:
+          claimName: jamchat-pvc
