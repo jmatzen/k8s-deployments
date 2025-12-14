@@ -26,11 +26,11 @@ spec:
           value: https://chat.funotron.com/auth/google/callback
         - name: APP_BASE_URL
           value: https://chat.funotron.com
-        - name: OPEN_API_KEY
+        - name: OPENAI_API_KEY
           valueFrom:
             secretKeyRef:
               name: jamchat-secrets
-              key: OPEN_API_KEY
+              key: OPENAI_API_KEY
         - name: GOOGLE_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
