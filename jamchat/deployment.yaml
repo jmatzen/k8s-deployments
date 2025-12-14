@@ -23,9 +23,9 @@ spec:
         - name: GOOGLE_CLIENT_ID
           value: 1032475387376-sfs9iplm6rhbjj6am9ad53imc8r96nog.apps.googleusercontent.com
         - name: OAUTH_REDIRECT_URL
-          value: https://chat.funotron.com/auth/google/callback
+          value: https://chat.matzen.io/auth/google/callback
         - name: APP_BASE_URL
-          value: https://chat.funotron.com
+          value: https://chat.matzen.io
         - name: OPENAI_API_KEY
           valueFrom:
             secretKeyRef:
