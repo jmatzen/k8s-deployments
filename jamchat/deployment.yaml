@@ -20,6 +20,8 @@ spec:
         image: repo.matzen.io/jamchat:latest
         imagePullPolicy: Always
         env:
+        - name: RUST_LOG
+          value: trace
         - name: GOOGLE_CLIENT_ID
           value: 1032475387376-sfs9iplm6rhbjj6am9ad53imc8r96nog.apps.googleusercontent.com
         - name: OAUTH_REDIRECT_URL
