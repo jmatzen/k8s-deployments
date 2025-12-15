@@ -28,6 +28,8 @@ spec:
           value: https://chat.matzen.io/auth/google/callback
         - name: APP_BASE_URL
           value: https://chat.matzen.io
+        - name: MODEL_FILTER_REGEX # MODEL_FILTER_REGEX=^gpt-5.2
+          value: "^gpt-5.2-"
         - name: OPENAI_API_KEY
           valueFrom:
             secretKeyRef:
