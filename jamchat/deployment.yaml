@@ -29,7 +29,12 @@ spec:
         - name: APP_BASE_URL
           value: https://chat.matzen.io
         - name: MODEL_FILTER_REGEX # MODEL_FILTER_REGEX=^gpt-5.2
-          value: "^gpt-5.2-|^gpt-5-"
+          value: "^(gpt-5.2-|gpt-5-|claude.*4.5)"
+        - name: ANTHROPIC_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: anthropic-api
+              key: ANTHROPIC_API_KEY
         - name: OPENAI_API_KEY
           valueFrom:
             secretKeyRef:
