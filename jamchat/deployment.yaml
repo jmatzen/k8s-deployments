@@ -13,6 +13,15 @@ spec:
       labels:
         app: jamchat
     spec:
+      initContainers:
+      - name: init-db-permissions
+        image: busybox  # Or any lightweight image with chown
+        command: ['sh', '-c', 'chown -R 999:999 /app/data/chats.db']
+        volumeMounts:
+        - name: jamchat-pvc
+          mountPath: /app/data
+        securityContext:
+          runAsUser: 0  # Run as root to perform chown
       imagePullSecrets: 
       - name: regcred
       containers:
