@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: git-lfs-s3-proxy
+  namespace: git-lfs-s3-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: git-lfs-s3-proxy
+  template:
+    metadata:
+      labels:
+        app: git-lfs-s3-proxy
+    spec:
+      imagePullSecrets: 
+      - name: regcred
+      containers:
+      - name: git-lfs-s3-proxy
+        image: repo.matzen.io/git-lfs-s3-proxy:latest
+        imagePullPolicy: Always
+        env:
+        - name: PUBLIC_URL
+          value: http://shadow:20081
+        - name: MAX_UPLOAD_SIZE
+          value: 5368709120
+        - name: MULTIPART_THRESHOLD
+          value: 10485760
+        - name: RUST_LOG
+          value: info
+        - name: S3_PREFIX
+          value: game
+        - name: AWS_REGION
+          value: us-west-2
+        - name: S3_BUCKET
+          value: git-lfs-2463a9e3179f
+        - name: LISTEN_ADDR
+          value: 0.0.0.0:8080
+        - name: AWS_ACCESS_KEY_ID
+          value: AKIA3BQBOHFXFVPECENS
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: git-lfs-s3-proxy-secrets
+              key: GIT_LFS_AWS_SECRET_ACCESS_KEY
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - name: git-lfs-s3-proxy-pvc
+          mountPath: /app/data
+      volumes:
+      - name: git-lfs-s3-proxy-pvc
+        persistentVolumeClaim:
+          claimName: git-lfs-s3-proxy-pvc
