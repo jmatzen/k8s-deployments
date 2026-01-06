@@ -9,6 +9,6 @@ spec:
     app: git-lfs-s3-proxy
   ports:
     - name: web
-      port: 3000
-      targetPort: 3000
+      port: 8080
+      targetPort: 8080
       nodePort: 30092
