@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: PUBLIC_URL
-          value: http://shadow:20081
+          value: http://shadow:30092
         - name: MAX_UPLOAD_SIZE
           value: "5368709120"
         - name: MULTIPART_THRESHOLD
