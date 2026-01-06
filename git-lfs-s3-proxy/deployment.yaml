@@ -23,9 +23,9 @@ spec:
         - name: PUBLIC_URL
           value: http://shadow:20081
         - name: MAX_UPLOAD_SIZE
-          value: 5368709120
+          value: "5368709120"
         - name: MULTIPART_THRESHOLD
-          value: 10485760
+          value: "10485760"
         - name: RUST_LOG
           value: info
         - name: S3_PREFIX
@@ -54,10 +54,3 @@ spec:
         - containerPort: 3000
           name: http
           protocol: TCP
-        volumeMounts:
-        - name: git-lfs-s3-proxy-pvc
-          mountPath: /app/data
-      volumes:
-      - name: git-lfs-s3-proxy-pvc
-        persistentVolumeClaim:
-          claimName: git-lfs-s3-proxy-pvc
