@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mayo
+  namespace: jamchat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mayo
+  template:
+    metadata:
+      labels:
+        app: mayo
+    spec:
+      imagePullSecrets: 
+      - name: regcred
+      containers:
+      - name: mayo
+        image: repo.matzen.io/mayo:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
